@@ -604,19 +604,6 @@
       flex-shrink: 0;
     }
 
-    .calendly-placeholder {
-      background: var(--card);
-      border: 1px solid var(--border);
-      padding: 3rem 2rem;
-      text-align: center;
-    }
-    .calendly-placeholder p {
-      font-family: var(--mono);
-      font-size: 0.8rem;
-      color: var(--muted);
-      margin-bottom: 1.5rem;
-      line-height: 1.7;
-    }
 
     /* ── CONTACT FORM ── */
     #contact { background: var(--black); }
@@ -815,6 +802,113 @@
       text-align: center;
       padding: 0 1rem;
     }
+    /* ── CERT CARDS ── */
+    .certs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    .cert-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      transition: border-color 0.25s, transform 0.25s;
+      display: flex;
+      flex-direction: column;
+    }
+    .cert-card:hover {
+      border-color: var(--emerald);
+      transform: translateY(-4px);
+    }
+    .cert-img-wrap {
+      width: 100%;
+      height: 160px;
+      overflow: hidden;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+    .cert-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+      display: block;
+      transition: transform 0.35s;
+    }
+    .cert-card:hover .cert-img-wrap img { transform: scale(1.03); }
+    .cert-img-placeholder {
+      width: 100%;
+      height: 100%;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 0.5rem;
+      background: var(--card);
+      border-bottom: 1px dashed var(--border);
+    }
+    .cert-img-placeholder span {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+      text-align: center;
+      padding: 0 1rem;
+    }
+    .cert-body { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; }
+    .cert-issuer {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      color: var(--emerald);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    .cert-title {
+      font-family: var(--display);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+      line-height: 1.3;
+    }
+    .cert-date {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+    .cert-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: auto;
+    }
+    .cert-tag {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      padding: 0.2rem 0.55rem;
+      background: var(--emerald-subtle);
+      border: 1px solid rgba(16,185,129,0.2);
+      color: var(--emerald);
+    }
+    .github-cta {
+      margin-top: 2.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.25rem 1.5rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+    }
+    .github-cta p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      flex: 1;
+    }
+    .github-cta p strong { color: var(--text); }
+
     /* ── PROJECT IMAGE SLOTS ── */
     .project-img {
       width: 100%;
@@ -931,19 +1025,19 @@
           alt="Ugochukwu Noble-Gold"
           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
         />
-        <div class="about-photo-placeholder">
+        <!-- <div class="about-photo-placeholder">
           <span style="font-size:2rem;">👤</span>
           <span>Add images/headshot.jpg<br>to your repo</span>
-        </div>
+        </div> -->
       </div>
 
       <div class="about-text reveal">
         <h2 class="section-title">Security-first.<br>Automation-driven.</h2>
         <p>
-          I'm <strong>Ugochukwu Noble-Gold</strong>, a Cloud Security & DevOps Engineer operating under the <strong>NobleOps</strong> brand. I design and secure cloud infrastructure across AWS, GCP, and Azure, build CI/CD pipelines that ship code safely, and mentor the next generation of cloud engineers.
+          I'm <strong>Ugochukwu Noble-Gold</strong>, operating under the <strong>NobleOps</strong> brand. I'm a certified Cloud Security & DevOps Engineer with hands-on experience across AWS, GCP, and Azure — and a broader background in digital marketing, lead generation, and IT support. I've led teams, delivered internship programmes, and helped businesses automate, secure, and grow.
         </p>
         <p>
-          Whether you're a startup that needs its first secure cloud environment or an established business looking to tighten its DevSecOps posture — I've got you covered.
+          Whether you need a hardened cloud environment, an automated CI/CD pipeline, a lead generation strategy, or a team member who can bridge the gap between technical and business operations — I bring the full picture.
         </p>
         <div class="skills-wrap">
           <span class="skill-tag">AWS</span>
@@ -960,6 +1054,13 @@
           <span class="skill-tag">Python</span>
           <span class="skill-tag">Bash</span>
           <span class="skill-tag">Jenkins</span>
+          <span class="skill-tag">Datadog</span>
+          <span class="skill-tag">HIPAA / PCI-DSS</span>
+          <span class="skill-tag">Email Marketing</span>
+          <span class="skill-tag">Lead Generation</span>
+          <span class="skill-tag">CRM</span>
+          <span class="skill-tag">Workflow Automation</span>
+          <span class="skill-tag">Virtual Assistance</span>
         </div>
       </div>
       <div class="about-stats reveal">
@@ -976,8 +1077,8 @@
           <div class="stat-label">Security-First Approach</div>
         </div>
         <div class="stat-card">
-          <div class="stat-num">2+</div>
-          <div class="stat-label">Years Tutoring Cloud & DevOps</div>
+          <div class="stat-num">5+</div>
+          <div class="stat-label">Months as Team Lead, GAOTek Inc.</div>
         </div>
       </div>
     </div>
@@ -1021,6 +1122,13 @@
       </div>
 
       <div class="service-card">
+        <span class="service-icon">📣</span>
+        <div class="service-title">Digital Marketing & Lead Gen</div>
+        <p class="service-desc">Email marketing campaigns, lead generation funnels, CRM setup, and workflow automation — certified by GAOTek Inc. with real Team Lead experience.</p>
+        <a href="#contact" class="service-link">Request this service →</a>
+      </div>
+
+      <div class="service-card">
         <span class="service-icon">🌐</span>
         <div class="service-title">Web Development</div>
         <p class="service-desc">Static and dynamic websites, deployed on secure cloud infrastructure with CI/CD pipelines baked in from day one.</p>
@@ -1032,97 +1140,142 @@
 
   <div class="divider"></div>
 
-  <!-- PROJECTS -->
+  <!-- CERTIFICATIONS -->
   <section id="projects">
-    <div class="section-label">My Work</div>
-    <h2 class="section-title">Projects</h2>
-    <p class="section-sub">Real-world cloud and security projects — built, secured, and documented.</p>
-    <div class="projects-grid">
+    <div class="section-label">Credentials</div>
+    <h2 class="section-title">Certifications &amp;<br>Training</h2>
+    <p class="section-sub">Verified credentials across cloud security, DevOps, digital marketing, and IT operations.</p>
 
-      <div class="project-card reveal">
-        <!-- PROJECT IMAGE — drop images/project-1.jpg into your repo -->
-        <img src="images/project-1.jpg" alt="Secure Cloud Infrastructure" class="project-img"
-          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-        <div class="project-img-placeholder">
-          <span>🖼</span>
-          <span>Add images/project-1.jpg</span>
-        </div>
-        <div class="project-header">
-          <div><!-- spacer --></div>
-          <span class="project-badge">Capstone</span>
-        </div>
-        <div class="project-body">
-          <div class="project-title">Secure Cloud Infrastructure on AWS</div>
-          <p class="project-desc">
-            Designed and deployed a fully automated, security-hardened AWS environment using Terraform. Includes VPC segmentation, IAM least-privilege policies, GuardDuty monitoring, and a CI/CD pipeline via GitHub Actions.
-          </p>
-          <div class="project-stack">
-            <span class="stack-tag">AWS</span>
-            <span class="stack-tag">Terraform</span>
-            <span class="stack-tag">GitHub Actions</span>
-            <span class="stack-tag">GuardDuty</span>
-            <span class="stack-tag">IAM</span>
+    <div class="certs-grid">
+
+      <!-- CERT 1: DevOps & Cloud Security -->
+      <div class="cert-card reveal">
+        <div class="cert-img-wrap">
+          <img src="images/cert-devops.jpg" alt="DevOps & Cloud Security Certificate"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+          <div class="cert-img-placeholder">
+            <span>📜</span>
+            <span>Add images/cert-devops.jpg</span>
           </div>
-          <a href="https://github.com" target="_blank" rel="noopener" class="service-link">View on GitHub →</a>
+        </div>
+        <div class="cert-body">
+          <div class="cert-issuer">Digital Witch Support Community</div>
+          <div class="cert-title">DevOps &amp; Cloud Security Certification</div>
+          <div class="cert-date">Completed: June 8, 2026</div>
+          <div class="cert-tags">
+            <span class="cert-tag">AWS</span>
+            <span class="cert-tag">Azure</span>
+            <span class="cert-tag">Terraform</span>
+            <span class="cert-tag">Kubernetes</span>
+            <span class="cert-tag">Docker</span>
+            <span class="cert-tag">GitHub Actions</span>
+            <span class="cert-tag">Datadog</span>
+            <span class="cert-tag">HIPAA</span>
+            <span class="cert-tag">PCI-DSS</span>
+          </div>
         </div>
       </div>
 
-      <div class="project-card reveal">
-        <!-- PROJECT IMAGE — drop images/project-2.jpg into your repo -->
-        <img src="images/project-2.jpg" alt="Containerised App Deployment" class="project-img"
-          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-        <div class="project-img-placeholder">
-          <span>🖼</span>
-          <span>Add images/project-2.jpg</span>
-        </div>
-        <div class="project-header">
-          <div></div>
-          <span class="project-badge">DevOps</span>
-        </div>
-        <div class="project-body">
-          <div class="project-title">Containerised App Deployment Pipeline</div>
-          <p class="project-desc">
-            Built a Docker + Kubernetes deployment pipeline with automated security scanning (Trivy), staging environments, and blue-green deployments to eliminate downtime releases.
-          </p>
-          <div class="project-stack">
-            <span class="stack-tag">Docker</span>
-            <span class="stack-tag">Kubernetes</span>
-            <span class="stack-tag">Trivy</span>
-            <span class="stack-tag">Jenkins</span>
-            <span class="stack-tag">Helm</span>
+      <!-- CERT 2: In-Demand IT Skills -->
+      <div class="cert-card reveal">
+        <div class="cert-img-wrap">
+          <img src="images/cert-it-skills.jpg" alt="In-Demand IT Skills Certificate"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+          <div class="cert-img-placeholder">
+            <span>📜</span>
+            <span>Add images/cert-it-skills.jpg</span>
           </div>
-          <a href="https://github.com" target="_blank" rel="noopener" class="service-link">View on GitHub →</a>
+        </div>
+        <div class="cert-body">
+          <div class="cert-issuer">Digital Witch Support Community</div>
+          <div class="cert-title">In-Demand IT Skills Training</div>
+          <div class="cert-date">Completed: December 18, 2025 · ID: DWSC15965</div>
+          <div class="cert-tags">
+            <span class="cert-tag">Virtual Assistance</span>
+            <span class="cert-tag">Technical Support</span>
+            <span class="cert-tag">CRM</span>
+            <span class="cert-tag">Workflow Automation</span>
+            <span class="cert-tag">Project Management</span>
+            <span class="cert-tag">Technical Sales</span>
+            <span class="cert-tag">Email Management</span>
+          </div>
         </div>
       </div>
 
-      <div class="project-card reveal">
-        <!-- PROJECT IMAGE — drop images/project-3.jpg into your repo -->
-        <img src="images/project-3.jpg" alt="Cloud Security Audit" class="project-img"
-          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-        <div class="project-img-placeholder">
-          <span>🖼</span>
-          <span>Add images/project-3.jpg</span>
-        </div>
-        <div class="project-header">
-          <div></div>
-          <span class="project-badge">Security</span>
-        </div>
-        <div class="project-body">
-          <div class="project-title">Cloud Security Audit & Remediation</div>
-          <p class="project-desc">
-            Conducted a full CIS Benchmark audit of an AWS account, identified 40+ misconfigurations, and remediated them with automated Terraform patches and a CloudWatch alerting dashboard.
-          </p>
-          <div class="project-stack">
-            <span class="stack-tag">AWS Config</span>
-            <span class="stack-tag">CloudWatch</span>
-            <span class="stack-tag">CIS Benchmark</span>
-            <span class="stack-tag">Terraform</span>
+      <!-- CERT 3: Email Marketing -->
+      <div class="cert-card reveal">
+        <div class="cert-img-wrap">
+          <img src="images/cert-email-marketing.jpg" alt="Email Marketing Certificate"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+          <div class="cert-img-placeholder">
+            <span>📜</span>
+            <span>Add images/cert-email-marketing.jpg</span>
           </div>
-          <a href="https://github.com" target="_blank" rel="noopener" class="service-link">View on GitHub →</a>
+        </div>
+        <div class="cert-body">
+          <div class="cert-issuer">GAOTek Inc. · GAO Group</div>
+          <div class="cert-title">Email Marketing Training — Team Lead</div>
+          <div class="cert-date">Completed: June 9, 2026 · 5-month programme</div>
+          <div class="cert-tags">
+            <span class="cert-tag">Email Marketing</span>
+            <span class="cert-tag">Team Leadership</span>
+            <span class="cert-tag">Campaign Strategy</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- CERT 4: Lead Generation -->
+      <div class="cert-card reveal">
+        <div class="cert-img-wrap">
+          <img src="images/cert-lead-gen.jpg" alt="Lead Generation Certificate"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+          <div class="cert-img-placeholder">
+            <span>📜</span>
+            <span>Add images/cert-lead-gen.jpg</span>
+          </div>
+        </div>
+        <div class="cert-body">
+          <div class="cert-issuer">GAOTek Inc. · GAO Group</div>
+          <div class="cert-title">Lead Generation Training — Team Lead</div>
+          <div class="cert-date">Completed: June 9, 2026 · 5-month programme</div>
+          <div class="cert-tags">
+            <span class="cert-tag">Lead Generation</span>
+            <span class="cert-tag">Team Leadership</span>
+            <span class="cert-tag">Sales Funnels</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- CERT 5: GAOTek Internship Completion -->
+      <div class="cert-card reveal">
+        <div class="cert-img-wrap">
+          <img src="images/cert-internship.jpg" alt="Internship Completion Certificate"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+          <div class="cert-img-placeholder">
+            <span>📜</span>
+            <span>Add images/cert-internship.jpg</span>
+          </div>
+        </div>
+        <div class="cert-body">
+          <div class="cert-issuer">GAOTek Inc. · GAO Group</div>
+          <div class="cert-title">Certificate of Completion — Internship Team Lead</div>
+          <div class="cert-date">Completed: June 9, 2026 · 5-month programme</div>
+          <div class="cert-tags">
+            <span class="cert-tag">Team Lead</span>
+            <span class="cert-tag">Programme Completion</span>
+            <span class="cert-tag">GAOTek</span>
+          </div>
         </div>
       </div>
 
     </div>
+
+    <!-- GitHub CTA -->
+    <div class="github-cta reveal">
+      <p>See my cloud and DevOps work in code — <strong>all projects are documented and open on GitHub.</strong></p>
+      <a href="https://github.com/UCNGolden/" target="_blank" rel="noopener" class="btn-primary">View GitHub →</a>
+    </div>
+
   </section>
 
   <div class="divider"></div>
@@ -1136,7 +1289,7 @@
 
       <div class="testimonial-card reveal">
         <div class="quote-mark">"</div>
-        <p class="testimonial-text">UCNGolden helped me go from zero cloud knowledge to passing my AWS Solutions Architect exam in 3 months. His teaching style is clear, practical, and genuinely patient.</p>
+        <p class="testimonial-text">Ugochukwu helped me go from zero cloud knowledge to passing my AWS Solutions Architect exam in 3 months. His teaching style is clear, practical, and genuinely patient.</p>
         <div class="testimonial-author">
           <div class="author-avatar">AO</div>
           <div>
@@ -1189,13 +1342,14 @@
           <li>Leave with a clear action plan</li>
         </ul>
       </div>
-      <div class="calendly-placeholder reveal">
-        <!-- Replace the div below with your actual Calendly embed -->
-        <!-- <div class="calendly-inline-widget" data-url="https://calendly.com/YOUR_USERNAME" style="min-width:320px;height:630px;"></div> -->
-        <!-- <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script> -->
-        <p>📅 Calendly booking widget goes here.<br><br>
-        Sign up at <strong style="color:var(--text)">calendly.com</strong>, create a free event type, then replace this block with your embed code.</p>
-        <a href="https://calendly.com" target="_blank" rel="noopener" class="btn-primary" style="display:inline-block; margin-top:1rem;">Set Up Calendly →</a>
+      <div class="reveal" style="min-width:320px;">
+        <!-- Calendly inline widget -->
+        <div
+          class="calendly-inline-widget"
+          data-url="https://calendly.com/ucngolden/discovery-call?hide_event_type_details=0&hide_gdpr_banner=1&background_color=0e1310&text_color=e8f0ec&primary_color=10b981"
+          style="min-width:320px;height:630px;">
+        </div>
+        <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
       </div>
     </div>
   </section>
@@ -1214,11 +1368,14 @@
           <a href="mailto:hello@nobleops.site" class="contact-link">
             <span class="contact-link-icon">✉</span> hello@nobleops.site
           </a>
-          <a href="https://linkedin.com/in/ugochukwu-noble-gold" target="_blank" rel="noopener" class="contact-link">
-            <span class="contact-link-icon">in</span> linkedin.com/in/ugochukwu-noble-gold
+          <a href="https://www.linkedin.com/in/ucngolden/" target="_blank" rel="noopener" class="contact-link">
+            <span class="contact-link-icon">in</span> linkedin.com/in/ucngolden
           </a>
-          <a href="https://github.com/UCNGolden" target="_blank" rel="noopener" class="contact-link">
+          <a href="https://github.com/UCNGolden/" target="_blank" rel="noopener" class="contact-link">
             <span class="contact-link-icon">⌥</span> github.com/UCNGolden
+          </a>
+          <a href="https://twitter.com/ucngoldin" target="_blank" rel="noopener" class="contact-link">
+            <span class="contact-link-icon">𝕏</span> @ucngoldin
           </a>
         </div>
       </div>
