@@ -15,23 +15,22 @@
   <style>
     /* ── TOKENS ── */
     :root {
-      --black:    #080B0A;
-      --surface:  #0E1310;
-      --card:     #131A16;
-      --border:   #1E2B23;
-      --emerald:  #10B981;
-      --emerald-dim: #059669;
-      --emerald-glow: rgba(16,185,129,0.15);
+      --black:          #080B0A;
+      --surface:        #0E1310;
+      --card:           #131A16;
+      --border:         #1E2B23;
+      --emerald:        #10B981;
+      --emerald-glow:   rgba(16,185,129,0.15);
       --emerald-subtle: rgba(16,185,129,0.07);
-      --text:     #E8F0EC;
-      --muted:    #7A9488;
-      --mono:     'JetBrains Mono', monospace;
-      --display:  'Syne', sans-serif;
-      --body:     'Space Grotesk', sans-serif;
+      --text:           #E8F0EC;
+      --muted:          #7A9488;
+      --mono:           'JetBrains Mono', monospace;
+      --display:        'Syne', sans-serif;
+      --body:           'Space Grotesk', sans-serif;
+      --max-w:          900px;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     html { scroll-behavior: smooth; }
 
     body {
@@ -43,7 +42,7 @@
       overflow-x: hidden;
     }
 
-    /* ── NOISE TEXTURE OVERLAY ── */
+    /* noise overlay */
     body::before {
       content: '';
       position: fixed;
@@ -52,6 +51,14 @@
       pointer-events: none;
       z-index: 0;
       opacity: 0.4;
+    }
+
+    /* ── CENTRE WRAPPER ── */
+    /* Every section's content is constrained and centred via this pattern */
+    .centre {
+      width: 100%;
+      max-width: var(--max-w);
+      margin: 0 auto;
     }
 
     /* ── NAV ── */
@@ -67,7 +74,6 @@
       backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--border);
     }
-
     .nav-logo {
       font-family: var(--mono);
       font-size: 0.85rem;
@@ -75,13 +81,11 @@
       letter-spacing: 0.04em;
     }
     .nav-logo span { color: var(--muted); }
-
     .nav-links {
       display: flex;
       gap: 2rem;
       list-style: none;
     }
-
     .nav-links a {
       font-family: var(--mono);
       font-size: 0.78rem;
@@ -92,7 +96,6 @@
       transition: color 0.2s;
     }
     .nav-links a:hover { color: var(--emerald); }
-
     .nav-cta {
       font-family: var(--mono);
       font-size: 0.78rem;
@@ -108,7 +111,7 @@
     }
     .nav-cta:hover { background: #34D399; transform: translateY(-1px); }
 
-    /* ── HAMBURGER ── */
+    /* hamburger */
     .hamburger {
       display: none;
       flex-direction: column;
@@ -131,12 +134,12 @@
       min-height: 100vh;
       display: flex;
       align-items: center;
+      justify-content: center;
       padding: 10rem 5vw 6rem;
       position: relative;
       overflow: hidden;
+      text-align: center;
     }
-
-    /* Grid background */
     #hero::after {
       content: '';
       position: absolute;
@@ -149,20 +152,24 @@
       opacity: 0.35;
       pointer-events: none;
     }
-
     .hero-glow {
       position: absolute;
       width: 600px;
       height: 600px;
       background: radial-gradient(circle, rgba(16,185,129,0.12) 0%, transparent 70%);
-      top: 50%;
-      left: 50%;
+      top: 50%; left: 50%;
       transform: translate(-50%, -55%);
       pointer-events: none;
     }
-
-    .hero-content { position: relative; z-index: 1; max-width: 860px; }
-
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: var(--max-w);
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
     .hero-tag {
       font-family: var(--mono);
       font-size: 0.75rem;
@@ -181,17 +188,16 @@
       height: 1px;
       background: var(--emerald);
     }
-
     .hero-name {
       font-family: var(--display);
-      font-size: clamp(1.6rem, 7vw, 6.5rem);
+      font-size: clamp(2.2rem, 8vw, 6.5rem);
       font-weight: 800;
       line-height: 0.95;
       letter-spacing: -0.03em;
       color: var(--text);
       margin-bottom: 0.3rem;
+      word-break: break-word;
     }
-
     .hero-brand {
       font-family: var(--display);
       font-size: clamp(1.5rem, 4vw, 3rem);
@@ -200,21 +206,31 @@
       letter-spacing: -0.02em;
       margin-bottom: 1.75rem;
     }
-
     .hero-desc {
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       color: var(--muted);
-      max-width: 540px;
+      max-width: 560px;
       margin-bottom: 2.5rem;
       line-height: 1.75;
     }
-
     .hero-actions {
       display: flex;
       gap: 1rem;
       flex-wrap: wrap;
+      justify-content: center;
     }
+    .blink {
+      display: inline-block;
+      width: 3px;
+      height: 1.1em;
+      background: var(--emerald);
+      vertical-align: text-bottom;
+      margin-left: 4px;
+      animation: blink 1.1s step-end infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
 
+    /* ── BUTTONS ── */
     .btn-primary {
       padding: 0.85rem 2rem;
       background: var(--emerald);
@@ -230,7 +246,6 @@
       display: inline-block;
     }
     .btn-primary:hover { background: #34D399; transform: translateY(-2px); }
-
     .btn-outline {
       padding: 0.85rem 2rem;
       background: transparent;
@@ -247,21 +262,12 @@
     }
     .btn-outline:hover { background: var(--emerald-glow); transform: translateY(-2px); }
 
-    /* terminal blink */
-    .blink {
-      display: inline-block;
-      width: 3px;
-      height: 1.1em;
-      background: var(--emerald);
-      vertical-align: text-bottom;
-      margin-left: 4px;
-      animation: blink 1.1s step-end infinite;
-    }
-    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
-
     /* ── SECTION BASE ── */
-    section { padding: 6rem 5vw; position: relative; z-index: 1; }
-
+    section {
+      padding: 6rem 5vw;
+      position: relative;
+      z-index: 1;
+    }
     .section-label {
       font-family: var(--mono);
       font-size: 0.72rem;
@@ -269,8 +275,8 @@
       text-transform: uppercase;
       color: var(--emerald);
       margin-bottom: 0.75rem;
+      text-align: center;
     }
-
     .section-title {
       font-family: var(--display);
       font-size: clamp(2rem, 4vw, 3rem);
@@ -279,15 +285,17 @@
       color: var(--text);
       margin-bottom: 1rem;
       line-height: 1.1;
+      text-align: center;
     }
-
     .section-sub {
       font-size: 1rem;
       color: var(--muted);
-      max-width: 500px;
-      margin-bottom: 3.5rem;
+      margin-bottom: 3rem;
+      text-align: center;
+      max-width: 520px;
+      margin-left: auto;
+      margin-right: auto;
     }
-
     .divider {
       width: 100%;
       height: 1px;
@@ -296,70 +304,42 @@
 
     /* ── ABOUT ── */
     #about { background: var(--surface); }
-
-    .about-grid {
+    .about-wrap {
       display: flex;
       flex-direction: column;
       align-items: center;
       text-align: center;
       gap: 2.5rem;
-      max-width: 860px;
+      max-width: var(--max-w);
       margin: 0 auto;
     }
-
+    .about-photo img {
+      width: 220px;
+      height: 220px;
+      object-fit: cover;
+      object-position: top;
+      border: 2px solid var(--emerald);
+      filter: grayscale(15%);
+      transition: filter 0.3s;
+      display: block;
+    }
+    .about-photo img:hover { filter: grayscale(0%); }
     .about-text p {
       color: var(--muted);
       margin-bottom: 1rem;
       font-size: 1.05rem;
       line-height: 1.8;
+      max-width: 680px;
+      margin-left: auto;
+      margin-right: auto;
     }
     .about-text p strong { color: var(--text); font-weight: 600; }
-
-    .about-stats {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 1rem;
-      width: 100%;
-    }
-
-    .stat-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      padding: 1.5rem;
-      position: relative;
-      overflow: hidden;
-    }
-    .stat-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0;
-      width: 3px; height: 100%;
-      background: var(--emerald);
-    }
-
-    .stat-num {
-      font-family: var(--display);
-      font-size: 2.5rem;
-      font-weight: 800;
-      color: var(--emerald);
-      line-height: 1;
-      margin-bottom: 0.4rem;
-    }
-    .stat-label {
-      font-family: var(--mono);
-      font-size: 0.72rem;
-      color: var(--muted);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    /* skills tags */
     .skills-wrap {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       gap: 0.6rem;
-      margin-top: 2rem;
+      margin-top: 1.5rem;
     }
     .skill-tag {
       font-family: var(--mono);
@@ -370,21 +350,58 @@
       color: var(--emerald);
       letter-spacing: 0.05em;
     }
+    .about-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1rem;
+      width: 100%;
+    }
+    .stat-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 1.25rem 1rem;
+      position: relative;
+      overflow: hidden;
+      text-align: left;
+    }
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 3px; height: 100%;
+      background: var(--emerald);
+    }
+    .stat-num {
+      font-family: var(--display);
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--emerald);
+      line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+    .stat-label {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      color: var(--muted);
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      line-height: 1.4;
+    }
 
     /* ── SERVICES ── */
     #services { background: var(--black); }
-
     .services-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 1.5px;
       background: var(--border);
       border: 1px solid var(--border);
+      max-width: var(--max-w);
+      margin: 0 auto;
     }
-
     .service-card {
       background: var(--card);
-      padding: 2.5rem 2rem;
+      padding: 2rem 1.75rem;
       cursor: pointer;
       transition: background 0.25s;
       position: relative;
@@ -402,28 +419,20 @@
     }
     .service-card:hover { background: var(--surface); }
     .service-card:hover::after { transform: scaleX(1); }
-
-    .service-icon {
-      font-size: 2rem;
-      margin-bottom: 1.25rem;
-      display: block;
-    }
-
+    .service-icon { font-size: 2rem; margin-bottom: 1.25rem; display: block; }
     .service-title {
       font-family: var(--display);
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       font-weight: 700;
       color: var(--text);
-      margin-bottom: 0.75rem;
+      margin-bottom: 0.65rem;
     }
-
     .service-desc {
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       color: var(--muted);
       line-height: 1.75;
       margin-bottom: 1.25rem;
     }
-
     .service-link {
       font-family: var(--mono);
       font-size: 0.75rem;
@@ -437,386 +446,14 @@
     }
     .service-link:hover { gap: 0.75rem; }
 
-    /* ── PROJECTS ── */
+    /* ── CERTIFICATIONS ── */
     #projects { background: var(--surface); }
-
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-      gap: 2rem;
-    }
-
-    .project-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      overflow: hidden;
-      transition: border-color 0.25s, transform 0.25s;
-    }
-    .project-card:hover {
-      border-color: var(--emerald);
-      transform: translateY(-4px);
-    }
-
-    .project-header {
-      padding: 1.75rem 1.75rem 0;
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 1rem;
-    }
-
-    .project-badge {
-      font-family: var(--mono);
-      font-size: 0.68rem;
-      padding: 0.3rem 0.7rem;
-      background: var(--emerald-subtle);
-      border: 1px solid rgba(16,185,129,0.3);
-      color: var(--emerald);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      white-space: nowrap;
-    }
-
-    .project-body { padding: 1rem 1.75rem 1.75rem; }
-
-    .project-title {
-      font-family: var(--display);
-      font-size: 1.3rem;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 0.75rem;
-    }
-
-    .project-desc {
-      font-size: 0.9rem;
-      color: var(--muted);
-      line-height: 1.75;
-      margin-bottom: 1.25rem;
-    }
-
-    .project-stack {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-      margin-bottom: 1.25rem;
-    }
-    .stack-tag {
-      font-family: var(--mono);
-      font-size: 0.68rem;
-      padding: 0.25rem 0.6rem;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid var(--border);
-      color: var(--muted);
-    }
-
-    /* ── TESTIMONIALS ── */
-    #testimonials { background: var(--black); }
-
-    .testimonials-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .testimonial-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      padding: 2rem;
-      position: relative;
-    }
-
-    .quote-mark {
-      font-family: var(--display);
-      font-size: 4rem;
-      color: var(--emerald);
-      line-height: 1;
-      margin-bottom: 0.5rem;
-      opacity: 0.6;
-    }
-
-    .testimonial-text {
-      font-size: 0.95rem;
-      color: var(--muted);
-      line-height: 1.8;
-      margin-bottom: 1.5rem;
-      font-style: italic;
-    }
-
-    .testimonial-author {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    .author-avatar {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: var(--emerald-glow);
-      border: 1px solid rgba(16,185,129,0.3);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--display);
-      font-weight: 800;
-      font-size: 0.85rem;
-      color: var(--emerald);
-      flex-shrink: 0;
-    }
-
-    .author-name {
-      font-family: var(--body);
-      font-weight: 600;
-      font-size: 0.9rem;
-      color: var(--text);
-    }
-    .author-role {
-      font-family: var(--mono);
-      font-size: 0.7rem;
-      color: var(--muted);
-      letter-spacing: 0.04em;
-    }
-
-    /* ── BOOK A CALL ── */
-    #book { background: var(--surface); }
-
-    .book-inner {
-      display: grid;
-      grid-template-columns: auto 1fr 1fr;
-      gap: 4rem;
-      align-items: start;
-    }
-
-    .book-info p {
-      color: var(--muted);
-      font-size: 1rem;
-      line-height: 1.8;
-      margin-bottom: 1.5rem;
-    }
-
-    .book-features {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-    }
-    .book-features li {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      font-size: 0.95rem;
-      color: var(--muted);
-    }
-    .book-features li::before {
-      content: '→';
-      color: var(--emerald);
-      font-family: var(--mono);
-      flex-shrink: 0;
-    }
-
-
-    /* ── CONTACT FORM ── */
-    #contact { background: var(--black); }
-
-    .contact-inner {
-      display: grid;
-      grid-template-columns: 1fr 1.5fr;
-      gap: 4rem;
-      align-items: start;
-    }
-
-    .contact-info h3 {
-      font-family: var(--display);
-      font-size: 1.4rem;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 1rem;
-    }
-
-    .contact-info p {
-      color: var(--muted);
-      font-size: 0.95rem;
-      line-height: 1.8;
-      margin-bottom: 2rem;
-    }
-
-    .contact-links {
-      display: flex;
-      flex-direction: column;
-      gap: 0.85rem;
-    }
-    .contact-link {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      font-family: var(--mono);
-      font-size: 0.8rem;
-      color: var(--muted);
-      text-decoration: none;
-      transition: color 0.2s;
-      letter-spacing: 0.03em;
-    }
-    .contact-link:hover { color: var(--emerald); }
-    .contact-link-icon { color: var(--emerald); font-size: 1rem; }
-
-    /* form */
-    .form-group {
-      margin-bottom: 1.25rem;
-    }
-    .form-group label {
-      display: block;
-      font-family: var(--mono);
-      font-size: 0.72rem;
-      color: var(--muted);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-bottom: 0.5rem;
-    }
-
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
-      width: 100%;
-      background: var(--card);
-      border: 1px solid var(--border);
-      color: var(--text);
-      font-family: var(--body);
-      font-size: 0.95rem;
-      padding: 0.85rem 1rem;
-      outline: none;
-      transition: border-color 0.2s;
-      appearance: none;
-    }
-    .form-group input:focus,
-    .form-group select:focus,
-    .form-group textarea:focus {
-      border-color: var(--emerald);
-    }
-    .form-group textarea { resize: vertical; min-height: 120px; }
-    .form-group select {
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2310B981' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 1rem center;
-      cursor: pointer;
-    }
-    .form-group select option { background: var(--card); }
-
-    .form-row {
-      display: grid;
-      grid-template-columns: auto 1fr 1fr;
-      gap: 1rem;
-    }
-
-    .form-submit {
-      width: 100%;
-      padding: 1rem;
-      background: var(--emerald);
-      color: var(--black);
-      font-family: var(--mono);
-      font-size: 0.85rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      border: none;
-      cursor: pointer;
-      transition: all 0.2s;
-      margin-top: 0.5rem;
-    }
-    .form-submit:hover { background: #34D399; transform: translateY(-2px); }
-
-    .form-success {
-      display: none;
-      background: var(--emerald-subtle);
-      border: 1px solid rgba(16,185,129,0.3);
-      padding: 1.5rem;
-      text-align: center;
-      font-family: var(--mono);
-      font-size: 0.85rem;
-      color: var(--emerald);
-      letter-spacing: 0.05em;
-    }
-
-    /* ── FOOTER ── */
-    footer {
-      background: var(--surface);
-      border-top: 1px solid var(--border);
-      padding: 3rem 5vw;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 1.5rem;
-    }
-
-    .footer-logo {
-      font-family: var(--mono);
-      font-size: 0.82rem;
-      color: var(--emerald);
-    }
-    .footer-logo span { color: var(--muted); }
-
-    .footer-copy {
-      font-family: var(--mono);
-      font-size: 0.72rem;
-      color: var(--muted);
-      letter-spacing: 0.04em;
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 1.5rem;
-    }
-    .footer-links a {
-      font-family: var(--mono);
-      font-size: 0.72rem;
-      color: var(--muted);
-      text-decoration: none;
-      letter-spacing: 0.06em;
-      transition: color 0.2s;
-    }
-    .footer-links a:hover { color: var(--emerald); }
-
-    /* ── HEADSHOT ── */
-    .about-photo {
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-    }
-    .about-photo img {
-      width: 100%;
-      max-width: 340px;
-      display: block;
-      border: 2px solid var(--emerald);
-      filter: grayscale(15%);
-      transition: filter 0.3s;
-    }
-    .about-photo img:hover { filter: grayscale(0%); }
-    .about-photo-placeholder {
-      display: none;
-      width: 100%;
-      max-width: 340px;
-      aspect-ratio: 3 / 4;
-      background: var(--card);
-      border: 2px dashed var(--border);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 0.75rem;
-      color: var(--muted);
-    }
-    .about-photo-placeholder span {
-      font-family: var(--mono);
-      font-size: 0.72rem;
-      letter-spacing: 0.08em;
-      text-align: center;
-      padding: 0 1rem;
-    }
-    /* ── CERT CARDS ── */
     .certs-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 1.5rem;
+      max-width: var(--max-w);
+      margin: 0 auto;
     }
     .cert-card {
       background: var(--card);
@@ -826,10 +463,7 @@
       display: flex;
       flex-direction: column;
     }
-    .cert-card:hover {
-      border-color: var(--emerald);
-      transform: translateY(-4px);
-    }
+    .cert-card:hover { border-color: var(--emerald); transform: translateY(-4px); }
     .cert-img-wrap {
       width: 100%;
       height: 160px;
@@ -856,7 +490,6 @@
       flex-direction: column;
       gap: 0.5rem;
       background: var(--card);
-      border-bottom: 1px dashed var(--border);
     }
     .cert-img-placeholder span {
       font-family: var(--mono);
@@ -873,19 +506,19 @@
       color: var(--emerald);
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.4rem;
     }
     .cert-title {
       font-family: var(--display);
-      font-size: 1.05rem;
+      font-size: 1rem;
       font-weight: 700;
       color: var(--text);
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.4rem;
       line-height: 1.3;
     }
     .cert-date {
       font-family: var(--mono);
-      font-size: 0.7rem;
+      font-size: 0.68rem;
       color: var(--muted);
       margin-bottom: 1rem;
     }
@@ -904,47 +537,234 @@
       color: var(--emerald);
     }
     .github-cta {
-      margin-top: 2.5rem;
+      max-width: var(--max-w);
+      margin: 2.5rem auto 0;
       display: flex;
       align-items: center;
       gap: 1rem;
       padding: 1.25rem 1.5rem;
       background: var(--card);
       border: 1px solid var(--border);
+      flex-wrap: wrap;
     }
-    .github-cta p {
-      font-size: 0.9rem;
-      color: var(--muted);
-      flex: 1;
-    }
+    .github-cta p { font-size: 0.9rem; color: var(--muted); flex: 1; }
     .github-cta p strong { color: var(--text); }
 
-    /* ── PROJECT IMAGE SLOTS ── */
-    .project-img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-      display: block;
-      border-bottom: 1px solid var(--border);
+    /* ── TESTIMONIALS ── */
+    #testimonials { background: var(--black); }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      max-width: var(--max-w);
+      margin: 0 auto;
     }
-    .project-img-placeholder {
-      display: none;
-      width: 100%;
-      height: 180px;
+    .testimonial-card {
       background: var(--card);
-      border-bottom: 1px dashed var(--border);
+      border: 1px solid var(--border);
+      padding: 2rem;
+    }
+    .quote-mark {
+      font-family: var(--display);
+      font-size: 4rem;
+      color: var(--emerald);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+      opacity: 0.6;
+    }
+    .testimonial-text {
+      font-size: 0.95rem;
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+      font-style: italic;
+    }
+    .testimonial-author { display: flex; align-items: center; gap: 1rem; }
+    .author-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--emerald-glow);
+      border: 1px solid rgba(16,185,129,0.3);
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 0.5rem;
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: 0.85rem;
+      color: var(--emerald);
+      flex-shrink: 0;
     }
-    .project-img-placeholder span {
+    .author-name { font-weight: 600; font-size: 0.9rem; color: var(--text); }
+    .author-role {
       font-family: var(--mono);
       font-size: 0.7rem;
       color: var(--muted);
-      letter-spacing: 0.06em;
+      letter-spacing: 0.04em;
     }
+
+    /* ── BOOK A CALL ── */
+    #book { background: var(--surface); }
+    .book-wrap {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+    .book-info p {
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+    }
+    .book-features { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+    .book-features li {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+    .book-features li::before {
+      content: '→';
+      color: var(--emerald);
+      font-family: var(--mono);
+      flex-shrink: 0;
+    }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--black); }
+    .contact-wrap {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 3rem;
+      align-items: start;
+    }
+    .contact-info h3 {
+      font-family: var(--display);
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 1rem;
+    }
+    .contact-info p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.8;
+      margin-bottom: 2rem;
+    }
+    .contact-links { display: flex; flex-direction: column; gap: 0.85rem; }
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+      letter-spacing: 0.03em;
+    }
+    .contact-link:hover { color: var(--emerald); }
+    .contact-link-icon { color: var(--emerald); font-size: 1rem; }
+
+    /* form */
+    .form-group { margin-bottom: 1.25rem; }
+    .form-group label {
+      display: block;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-family: var(--body);
+      font-size: 0.95rem;
+      padding: 0.85rem 1rem;
+      outline: none;
+      transition: border-color 0.2s;
+      appearance: none;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: var(--emerald); }
+    .form-group textarea { resize: vertical; min-height: 120px; }
+    .form-group select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2310B981' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      cursor: pointer;
+    }
+    .form-group select option { background: var(--card); }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .form-submit {
+      width: 100%;
+      padding: 1rem;
+      background: var(--emerald);
+      color: var(--black);
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-top: 0.5rem;
+    }
+    .form-submit:hover { background: #34D399; transform: translateY(-2px); }
+    .form-success {
+      display: none;
+      background: var(--emerald-subtle);
+      border: 1px solid rgba(16,185,129,0.3);
+      padding: 1.5rem;
+      text-align: center;
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      color: var(--emerald);
+      letter-spacing: 0.05em;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      padding: 3rem 5vw;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+    .footer-logo { font-family: var(--mono); font-size: 0.82rem; color: var(--emerald); }
+    .footer-logo span { color: var(--muted); }
+    .footer-copy { font-family: var(--mono); font-size: 0.72rem; color: var(--muted); letter-spacing: 0.04em; }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.06em;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--emerald); }
 
     /* ── SCROLL REVEAL ── */
     .reveal {
@@ -952,10 +772,7 @@
       transform: translateY(28px);
       transition: opacity 0.6s ease, transform 0.6s ease;
     }
-    .reveal.visible {
-      opacity: 1;
-      transform: none;
-    }
+    .reveal.visible { opacity: 1; transform: none; }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
@@ -971,14 +788,14 @@
         padding: 2rem 5vw;
         gap: 1.5rem;
       }
-      .book-inner,
-      .contact-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .hero-name { font-size: clamp(2rem, 11vw, 3.5rem); }
+      .hero-actions { flex-direction: column; align-items: center; }
+      .btn-primary, .btn-outline { text-align: center; width: 100%; max-width: 320px; }
+      .book-wrap,
+      .contact-wrap { grid-template-columns: 1fr; gap: 2.5rem; }
       .form-row { grid-template-columns: 1fr; }
       .about-stats { grid-template-columns: 1fr 1fr; }
-      .hero-actions { flex-direction: column; }
-      .btn-primary, .btn-outline { text-align: center; }
-      .hero-name { word-break: break-word; font-size: clamp(1.6rem, 10vw, 3rem); }
-      .hero-content { padding-right: 1rem; }
+      .footer-copy { display: none; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -995,7 +812,7 @@
     <ul class="nav-links" id="navLinks">
       <li><a href="#about">About</a></li>
       <li><a href="#services">Services</a></li>
-      <li><a href="#projects">Projects</a></li>
+      <li><a href="#projects">Certifications</a></li>
       <li><a href="#testimonials">Testimonials</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
@@ -1017,7 +834,7 @@
       </p>
       <div class="hero-actions">
         <a href="#contact" class="btn-primary">Request a Service</a>
-        <a href="#projects" class="btn-outline">View My Work</a>
+        <a href="#projects" class="btn-outline">View Certifications</a>
       </div>
     </div>
   </section>
@@ -1026,28 +843,22 @@
 
   <!-- ABOUT -->
   <section id="about">
-    <div class="about-grid">
+    <div class="about-wrap">
 
-      <div class="section-label">Who I Am</div>
+      <div class="section-label reveal">Who I Am</div>
 
-      <!-- HEADSHOT — centred -->
       <div class="about-photo reveal">
         <img
           src="images/headshot.jpg"
           alt="Ugochukwu Noble-Gold"
-          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+          onerror="this.style.display='none';"
         />
-        <!-- <div class="about-photo-placeholder">
-          <span style="font-size:2rem;">👤</span>
-          <span>Add images/headshot.jpg<br>to your repo</span>
-        </div> -->
       </div>
 
-      <!-- TAGLINE + BIO + TAGS -->
       <div class="about-text reveal">
         <h2 class="section-title">Security-first.<br>Automation-driven.</h2>
         <p>
-          I'm <strong>Ugochukwu Noble-Gold</strong>, operating under the <strong>NobleOps</strong> brand. I'm a certified Cloud Security & DevOps Engineer with hands-on experience across AWS, GCP, and Azure — and a broader background in digital marketing, lead generation, and IT support. I've led teams, delivered internship programmes, and helped businesses automate, secure, and grow.
+          I'm <strong>Ugochukwu Noble-Gold</strong>, operating under the <strong>NobleOps</strong> brand. I'm a certified Cloud Security &amp; DevOps Engineer with hands-on experience across AWS, GCP, and Azure — and a broader background in digital marketing, lead generation, and IT support. I've led teams, delivered internship programmes, and helped businesses automate, secure, and grow.
         </p>
         <p>
           Whether you need a hardened cloud environment, an automated CI/CD pipeline, a lead generation strategy, or a team member who can bridge the gap between technical and business operations — I bring the full picture.
@@ -1077,7 +888,6 @@
         </div>
       </div>
 
-      <!-- STATS — auto-fit, never squishes or overflows -->
       <div class="about-stats reveal">
         <div class="stat-card">
           <div class="stat-num">5+</div>
@@ -1104,15 +914,15 @@
 
   <!-- SERVICES -->
   <section id="services">
-    <div class="section-label">What I Do</div>
-    <h2 class="section-title">Services</h2>
-    <p class="section-sub">From zero to production-ready — securely, reliably, and fast.</p>
+    <div class="section-label reveal">What I Do</div>
+    <h2 class="section-title reveal">Services</h2>
+    <p class="section-sub reveal">From zero to production-ready — securely, reliably, and fast.</p>
     <div class="services-grid reveal">
 
       <div class="service-card">
         <span class="service-icon">🛡️</span>
         <div class="service-title">Cloud Security Consulting</div>
-        <p class="service-desc">Security audits, IAM hardening, threat modeling, and compliance review (CIS, NIST). I find the gaps before attackers do.</p>
+        <p class="service-desc">Security audits, IAM hardening, threat modeling, and compliance review (CIS, NIST, HIPAA, PCI-DSS). I find the gaps before attackers do.</p>
         <a href="#contact" class="service-link">Request this service →</a>
       </div>
 
@@ -1126,21 +936,21 @@
       <div class="service-card">
         <span class="service-icon">☁️</span>
         <div class="service-title">Infrastructure (AWS, GCP &amp; Azure)</div>
-        <p class="service-desc">IaC with Terraform, scalable VPC design, containerised workloads on ECS/EKS/GKE, cost-optimised multi-cloud architecture, and affordable object storage with Wasabi.</p>
-        <a href="#contact" class="service-link">Request this service →</a>
-      </div>
-
-      <div class="service-card">
-        <span class="service-icon">🎓</span>
-        <div class="service-title">Tutoring & Training</div>
-        <p class="service-desc">1-on-1 and group training on AWS, DevOps practices, Linux, and cloud security — from beginners to working professionals levelling up.</p>
+        <p class="service-desc">IaC with Terraform, scalable VPC design, containerised workloads on ECS/EKS/GKE, multi-cloud architecture, and affordable object storage with Wasabi.</p>
         <a href="#contact" class="service-link">Request this service →</a>
       </div>
 
       <div class="service-card">
         <span class="service-icon">📣</span>
-        <div class="service-title">Digital Marketing & Lead Gen</div>
+        <div class="service-title">Digital Marketing &amp; Lead Gen</div>
         <p class="service-desc">Email marketing campaigns, lead generation funnels, CRM setup, and workflow automation — certified by GAOTek Inc. with real Team Lead experience.</p>
+        <a href="#contact" class="service-link">Request this service →</a>
+      </div>
+
+      <div class="service-card">
+        <span class="service-icon">🎓</span>
+        <div class="service-title">Tutoring &amp; Training</div>
+        <p class="service-desc">1-on-1 and group training on AWS, DevOps practices, Linux, and cloud security — from beginners to working professionals levelling up.</p>
         <a href="#contact" class="service-link">Request this service →</a>
       </div>
 
@@ -1158,13 +968,12 @@
 
   <!-- CERTIFICATIONS -->
   <section id="projects">
-    <div class="section-label">Credentials</div>
-    <h2 class="section-title">Certifications &amp;<br>Training</h2>
-    <p class="section-sub">Verified credentials across cloud security, DevOps, digital marketing, and IT operations.</p>
+    <div class="section-label reveal">Credentials</div>
+    <h2 class="section-title reveal">Certifications &amp; Training</h2>
+    <p class="section-sub reveal">Verified credentials across cloud security, DevOps, digital marketing, and IT operations.</p>
 
     <div class="certs-grid">
 
-      <!-- CERT 1: DevOps & Cloud Security -->
       <div class="cert-card reveal">
         <div class="cert-img-wrap">
           <img src="images/cert-devops.jpg" alt="DevOps & Cloud Security Certificate"
@@ -1192,7 +1001,6 @@
         </div>
       </div>
 
-      <!-- CERT 2: In-Demand IT Skills -->
       <div class="cert-card reveal">
         <div class="cert-img-wrap">
           <img src="images/cert-it-skills.jpg" alt="In-Demand IT Skills Certificate"
@@ -1213,12 +1021,10 @@
             <span class="cert-tag">Workflow Automation</span>
             <span class="cert-tag">Project Management</span>
             <span class="cert-tag">Technical Sales</span>
-            <span class="cert-tag">Email Management</span>
           </div>
         </div>
       </div>
 
-      <!-- CERT 3: Email Marketing -->
       <div class="cert-card reveal">
         <div class="cert-img-wrap">
           <img src="images/cert-email-marketing.jpg" alt="Email Marketing Certificate"
@@ -1240,7 +1046,6 @@
         </div>
       </div>
 
-      <!-- CERT 4: Lead Generation -->
       <div class="cert-card reveal">
         <div class="cert-img-wrap">
           <img src="images/cert-lead-gen.jpg" alt="Lead Generation Certificate"
@@ -1262,7 +1067,6 @@
         </div>
       </div>
 
-      <!-- CERT 5: GAOTek Internship Completion -->
       <div class="cert-card reveal">
         <div class="cert-img-wrap">
           <img src="images/cert-internship.jpg" alt="Internship Completion Certificate"
@@ -1286,7 +1090,6 @@
 
     </div>
 
-    <!-- GitHub CTA -->
     <div class="github-cta reveal">
       <p>See my cloud and DevOps work in code — <strong>all projects are documented and open on GitHub.</strong></p>
       <a href="https://github.com/UCNGolden/" target="_blank" rel="noopener" class="btn-primary">View GitHub →</a>
@@ -1298,9 +1101,9 @@
 
   <!-- TESTIMONIALS -->
   <section id="testimonials">
-    <div class="section-label">Social Proof</div>
-    <h2 class="section-title">What People Say</h2>
-    <p class="section-sub">From students I've mentored to clients I've worked with.</p>
+    <div class="section-label reveal">Social Proof</div>
+    <h2 class="section-title reveal">What People Say</h2>
+    <p class="section-sub reveal">From students I've mentored to clients I've worked with.</p>
     <div class="testimonials-grid">
 
       <div class="testimonial-card reveal">
@@ -1346,10 +1149,10 @@
 
   <!-- BOOK A CALL -->
   <section id="book">
-    <div class="section-label">Let's Talk</div>
-    <div class="book-inner">
+    <div class="section-label reveal">Let's Talk</div>
+    <div class="book-wrap">
       <div class="book-info reveal">
-        <h2 class="section-title">Book a Free<br>Consultation</h2>
+        <h2 class="section-title" style="text-align:left;">Book a Free<br>Consultation</h2>
         <p>Not sure which service fits your needs? Book a free 30-minute discovery call and let's figure it out together.</p>
         <ul class="book-features">
           <li>No commitment required</li>
@@ -1358,12 +1161,11 @@
           <li>Leave with a clear action plan</li>
         </ul>
       </div>
-      <div class="reveal" style="min-width:320px;">
-        <!-- Calendly inline widget -->
+      <div class="reveal" style="min-width:280px;">
         <div
           class="calendly-inline-widget"
           data-url="https://calendly.com/ucngolden/discovery-call?hide_event_type_details=0&hide_gdpr_banner=1&background_color=0e1310&text_color=e8f0ec&primary_color=10b981"
-          style="min-width:320px;height:630px;">
+          style="min-width:280px;height:630px;">
         </div>
         <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
       </div>
@@ -1372,13 +1174,13 @@
 
   <div class="divider"></div>
 
-  <!-- CONTACT / REQUEST FORM -->
+  <!-- CONTACT -->
   <section id="contact">
-    <div class="section-label">Work With Me</div>
-    <div class="contact-inner">
+    <div class="section-label reveal">Work With Me</div>
+    <div class="contact-wrap">
 
       <div class="contact-info reveal">
-        <h2 class="section-title">Request<br>a Service</h2>
+        <h2 class="section-title" style="text-align:left;">Request<br>a Service</h2>
         <p>Fill out the form and I'll get back to you within 24 hours with a proposal and timeline.</p>
         <div class="contact-links">
           <a href="mailto:hello@nobleops.site" class="contact-link">
@@ -1397,7 +1199,6 @@
       </div>
 
       <div class="reveal">
-        <!-- Replace YOUR_FORM_ID with your actual Formspree form ID -->
         <form id="contactForm" action="https://formspree.io/f/xkoaaobw" method="POST">
           <div class="form-row">
             <div class="form-group">
@@ -1409,7 +1210,6 @@
               <input type="email" id="email" name="email" placeholder="jane@company.com" required />
             </div>
           </div>
-
           <div class="form-group">
             <label for="service">Service Needed</label>
             <select id="service" name="service" required>
@@ -1417,12 +1217,12 @@
               <option value="Cloud Security Consulting">Cloud Security Consulting</option>
               <option value="DevOps / CI-CD Setup">DevOps / CI-CD Setup</option>
               <option value="Infrastructure (AWS/GCP/Azure)">Infrastructure (AWS / GCP / Azure)</option>
+              <option value="Digital Marketing / Lead Gen">Digital Marketing &amp; Lead Gen</option>
               <option value="Tutoring / Training">Tutoring &amp; Training</option>
               <option value="Web Development">Web Development</option>
               <option value="Not Sure">Not Sure — Let's Talk</option>
             </select>
           </div>
-
           <div class="form-group">
             <label for="budget">Approximate Budget</label>
             <select id="budget" name="budget">
@@ -1434,12 +1234,10 @@
               <option>Let's discuss</option>
             </select>
           </div>
-
           <div class="form-group">
             <label for="message">Tell Me About Your Project</label>
             <textarea id="message" name="message" placeholder="Describe your current setup, the challenge you're facing, and what outcome you're looking for…" required></textarea>
           </div>
-
           <button type="submit" class="form-submit">Send Request →</button>
         </form>
         <div class="form-success" id="formSuccess">
@@ -1453,7 +1251,7 @@
   <!-- FOOTER -->
   <footer>
     <div class="footer-logo">noble-gold<span>.nobleops</span></div>
-    <div class="footer-copy">© 2025 NobleOps. All rights reserved.</div>
+    <div class="footer-copy">© 2026 NobleOps. All rights reserved.</div>
     <div class="footer-links">
       <a href="#about">About</a>
       <a href="#services">Services</a>
@@ -1464,28 +1262,22 @@
   <script>
     // ── HAMBURGER ──
     const hamburger = document.getElementById('hamburger');
-    const navLinks = document.getElementById('navLinks');
-    hamburger.addEventListener('click', () => {
-      navLinks.classList.toggle('open');
-    });
-    navLinks.querySelectorAll('a').forEach(a => {
-      a.addEventListener('click', () => navLinks.classList.remove('open'));
-    });
+    const navLinks  = document.getElementById('navLinks');
+    hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
+    navLinks.querySelectorAll('a').forEach(a =>
+      a.addEventListener('click', () => navLinks.classList.remove('open'))
+    );
 
     // ── SCROLL REVEAL ──
-    const reveals = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('visible');
-          observer.unobserve(e.target);
-        }
+        if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
       });
-    }, { threshold: 0.12 });
-    reveals.forEach(el => observer.observe(el));
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    // ── FORM AJAX (Formspree) ──
-    const form = document.getElementById('contactForm');
+    // ── FORM (Formspree AJAX) ──
+    const form    = document.getElementById('contactForm');
     const success = document.getElementById('formSuccess');
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -1513,12 +1305,10 @@
 
     // ── ACTIVE NAV HIGHLIGHT ──
     const sections = document.querySelectorAll('section[id]');
-    const navAs = document.querySelectorAll('.nav-links a');
+    const navAs    = document.querySelectorAll('.nav-links a');
     window.addEventListener('scroll', () => {
       let current = '';
-      sections.forEach(s => {
-        if (window.scrollY >= s.offsetTop - 120) current = s.id;
-      });
+      sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) current = s.id; });
       navAs.forEach(a => {
         a.style.color = a.getAttribute('href') === `#${current}` ? 'var(--emerald)' : '';
       });
