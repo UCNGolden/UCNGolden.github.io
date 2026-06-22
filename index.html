@@ -298,10 +298,13 @@
     #about { background: var(--surface); }
 
     .about-grid {
-      display: grid;
-      grid-template-columns: auto 280px 1fr 260px;
-      gap: 4rem;
+      display: flex;
+      flex-direction: column;
       align-items: center;
+      text-align: center;
+      gap: 2.5rem;
+      max-width: 860px;
+      margin: 0 auto;
     }
 
     .about-text p {
@@ -314,8 +317,9 @@
 
     .about-stats {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1rem;
+      width: 100%;
     }
 
     .stat-card {
@@ -353,6 +357,7 @@
     .skills-wrap {
       display: flex;
       flex-wrap: wrap;
+      justify-content: center;
       gap: 0.6rem;
       margin-top: 2rem;
     }
@@ -966,7 +971,6 @@
         padding: 2rem 5vw;
         gap: 1.5rem;
       }
-      .about-grid,
       .book-inner,
       .contact-inner { grid-template-columns: 1fr; gap: 2.5rem; }
       .form-row { grid-template-columns: 1fr; }
@@ -1022,10 +1026,11 @@
 
   <!-- ABOUT -->
   <section id="about">
-    <div class="section-label">Who I Am</div>
     <div class="about-grid">
 
-      <!-- HEADSHOT — drop images/headshot.jpg into your repo and it appears automatically -->
+      <div class="section-label">Who I Am</div>
+
+      <!-- HEADSHOT — centred -->
       <div class="about-photo reveal">
         <img
           src="images/headshot.jpg"
@@ -1038,6 +1043,7 @@
         </div> -->
       </div>
 
+      <!-- TAGLINE + BIO + TAGS -->
       <div class="about-text reveal">
         <h2 class="section-title">Security-first.<br>Automation-driven.</h2>
         <p>
@@ -1070,6 +1076,8 @@
           <span class="skill-tag">Virtual Assistance</span>
         </div>
       </div>
+
+      <!-- STATS — auto-fit, never squishes or overflows -->
       <div class="about-stats reveal">
         <div class="stat-card">
           <div class="stat-num">5+</div>
@@ -1088,6 +1096,7 @@
           <div class="stat-label">Months as Team Lead, GAOTek Inc.</div>
         </div>
       </div>
+
     </div>
   </section>
 
