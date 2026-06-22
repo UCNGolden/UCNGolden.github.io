@@ -184,7 +184,7 @@
 
     .hero-name {
       font-family: var(--display);
-      font-size: clamp(3rem, 8vw, 6.5rem);
+      font-size: clamp(1.6rem, 7vw, 6.5rem);
       font-weight: 800;
       line-height: 0.95;
       letter-spacing: -0.03em;
@@ -299,7 +299,7 @@
 
     .about-grid {
       display: grid;
-      grid-template-columns: auto 1fr 1fr;
+      grid-template-columns: auto 280px 1fr 260px;
       gap: 4rem;
       align-items: center;
     }
@@ -314,7 +314,7 @@
 
     .about-stats {
       display: grid;
-      grid-template-columns: auto 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
       gap: 1.5rem;
     }
 
@@ -973,6 +973,8 @@
       .about-stats { grid-template-columns: 1fr 1fr; }
       .hero-actions { flex-direction: column; }
       .btn-primary, .btn-outline { text-align: center; }
+      .hero-name { word-break: break-word; font-size: clamp(1.6rem, 10vw, 3rem); }
+      .hero-content { padding-right: 1rem; }
     }
 
     @media (prefers-reduced-motion: reduce) {
